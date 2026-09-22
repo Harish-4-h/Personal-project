@@ -1,102 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A tiny jungle-themed gift made with love.">
-  <title>Piggie & Monkey 🐷🐒</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A little riddle first 🐷🐒</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky-top:#bfe6c9;
+    --sky-bottom:#eafbe7;
+    --green-dark:#2f6b3a;
+    --green-mid:#4c9a53;
+    --brown:#7a5230;
+    --card-bg:#ffffff;
+    --text:#2b3a2c;
+    --accent:#ff9f43;
+    --error:#e5533d;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:'Baloo 2', sans-serif;
+    background:linear-gradient(180deg,var(--sky-top),var(--sky-bottom));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    overflow:hidden;
+    position:relative;
+  }
+  .cloud{
+    position:absolute;
+    background:#fff;
+    border-radius:50px;
+    opacity:.8;
+    filter:blur(1px);
+  }
+  .cloud::before,.cloud::after{
+    content:"";
+    position:absolute;
+    background:#fff;
+    border-radius:50%;
+  }
+  .cloud-a{width:90px;height:32px;top:8%;left:10%;}
+  .cloud-a::before{width:50px;height:50px;top:-22px;left:10px;}
+  .cloud-a::after{width:36px;height:36px;top:-14px;left:50px;}
+  .cloud-b{width:70px;height:26px;top:16%;right:12%;}
+  .cloud-b::before{width:40px;height:40px;top:-18px;left:8px;}
+  .cloud-b::after{width:28px;height:28px;top:-10px;left:38px;}
+ 
+  .float-emoji{
+    position:absolute;
+    font-size:28px;
+    opacity:.9;
+    animation:bob 3.5s ease-in-out infinite;
+  }
+  .e1{top:70%;left:8%;animation-delay:0s;}
+  .e2{top:78%;right:10%;animation-delay:.8s;font-size:24px;}
+  .e3{top:14%;left:45%;animation-delay:1.4s;font-size:20px;}
+  @keyframes bob{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+  }
+ 
+  .card{
+    background:var(--card-bg);
+    border-radius:28px;
+    padding:36px 30px;
+    max-width:440px;
+    width:100%;
+    box-shadow:0 20px 50px rgba(47,107,58,.25);
+    text-align:center;
+    position:relative;
+    z-index:2;
+    border:3px solid var(--green-mid);
+  }
+  .card.shake{animation:shake .45s;}
+  @keyframes shake{
+    10%,90%{transform:translateX(-3px);}
+    20%,80%{transform:translateX(6px);}
+    30%,50%,70%{transform:translateX(-10px);}
+    40%,60%{transform:translateX(10px);}
+  }
+ 
+  .badge{
+    font-size:13px;
+    font-weight:700;
+    color:var(--green-dark);
+    background:#e4f5e6;
+    display:inline-block;
+    padding:5px 14px;
+    border-radius:20px;
+    margin-bottom:14px;
+    letter-spacing:.3px;
+  }
+  h1{
+    margin:0 0 6px;
+    font-size:26px;
+    color:var(--green-dark);
+    font-weight:800;
+  }
+  .sub{
+    margin:0 0 20px;
+    font-size:14px;
+    color:#5a6b5b;
+  }
+  .emojis{
+    font-size:34px;
+    margin-bottom:10px;
+  }
+  .problem{
+    background:#f4faf1;
+    border-radius:16px;
+    padding:18px 16px;
+    font-size:17px;
+    line-height:1.5;
+    color:var(--text);
+    margin-bottom:20px;
+    font-weight:600;
+    border:2px dashed var(--green-mid);
+  }
+  input[type="number"]{
+    width:100%;
+    padding:13px 16px;
+    font-size:18px;
+    font-family:inherit;
+    border:2px solid var(--green-mid);
+    border-radius:14px;
+    outline:none;
+    text-align:center;
+    margin-bottom:14px;
+    color:var(--text);
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+  input[type="number"]:focus{border-color:var(--accent);}
+ 
+  button{
+    width:100%;
+    padding:13px;
+    font-family:inherit;
+    font-size:16px;
+    font-weight:700;
+    color:#fff;
+    background:var(--green-dark);
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    transition:transform .15s ease, background .2s ease;
+  }
+  button:hover{background:var(--green-mid);}
+  button:active{transform:scale(.97);}
+ 
+  .msg{
+    min-height:20px;
+    margin-top:12px;
+    font-size:14px;
+    font-weight:700;
+  }
+  .msg.error{color:var(--error);}
+  .msg.success{color:var(--green-dark);}
+ 
+  .attempts{
+    margin-top:10px;
+    font-size:12px;
+    color:#8a978b;
+  }
+</style>
 </head>
 <body>
-  <div class="scene">
-
-    <div class="sun"></div>
-    <div class="cloud cloud-one"></div>
-    <div class="cloud cloud-two"></div>
-
-    <header class="hero">
-      <p class="eyebrow">a tiny little jungle corner</p>
-      <h1>Welcome to the Chaos <span>Piggie</span> 🐷</h1>
-      <p class="subtitle">A small place on the internet, just for you.</p>
-    </header>
-
-    <!-- Monkey swinging from the tree -->
-    <div class="tree">
-      <div class="trunk"></div>
-      <div class="branch branch-main"></div>
-      <div class="branch branch-small"></div>
-      <div class="leaves leaves-one"></div>
-      <div class="leaves leaves-two"></div>
-      <div class="leaves leaves-three"></div>
-
-      <div class="rope">
-        <div class="monkey" aria-label="swinging monkey">🐒</div>
-      </div>
-    </div>
-
-    <!-- Roaming pig -->
-    <div class="piggie" id="piggie" aria-label="roaming pig">🐷</div>
-    <div class="pig-shadow" id="pigShadow"></div>
-
-    <main>
-      <!-- Video -->
-      <section class="card video-card">
-        <div class="section-label">🎬 your comedy corner</div>
-        <h2>One video I couldn't leave out 😂</h2>
-
-        <div class="video-frame">
-          <video id="giftVideo" controls playsinline poster="">
-            <source src="assets/video.mp4" type="video/mp4">
-            Your browser does not support the video element.
-          </video>
-          <div class="video-placeholder" id="videoPlaceholder">
-            <span>🎥</span>
-            <strong>Her comedy video goes here</strong>
-            <small>Replace <code>assets/video.mp4</code> with the video.</small>
-          </div>
-        </div>
-      </section>
-
-<!-- Photos -->
-<section class="photos-section">
-  <div class="section-label">📸 little memories</div>
-  <h2>Two pictures. Two little Piggies. One Name - Aruna😂</h2>
-
-  <div class="photo-grid">
-
-    <figure class="photo-card photo-one">
-      <img src="assets/photo1.jpeg" alt="Photo 1">
-      <figcaption>That smile. 🐷</figcaption>
-    </figure>
-
-    <figure class="photo-card photo-two">
-      <img src="assets/photo2.jpeg" alt="Photo 2">
-      <figcaption>Another little moment. 🌿</figcaption>
-    </figure>
-
+ 
+  <div class="cloud cloud-a"></div>
+  <div class="cloud cloud-b"></div>
+  <div class="float-emoji e1">🌿</div>
+  <div class="float-emoji e2">🌿</div>
+  <div class="float-emoji e3">☁️</div>
+ 
+  <div class="card" id="card">
+    <div class="badge">🔒 one little riddle before you go in</div>
+    <div class="emojis">🐷🐒</div>
+    <h1>Solve it to enter</h1>
+    <p class="sub">Piggie & Monkey made you a tiny gate. Get it right, and you're in.</p>
+ 
+    <div class="problem" id="problem"></div>
+ 
+    <form id="answerForm" autocomplete="off">
+      <input type="number" id="answerInput" placeholder="your answer" required inputmode="numeric">
+      <button type="submit">Unlock 🌿</button>
+    </form>
+ 
+    <div class="msg" id="msg"></div>
+    <div class="attempts" id="attempts"></div>
   </div>
-</section>
-
-      <!-- Ending -->
-      <section class="ending-card">
-        <div class="little-animals">🐒 🌿 🐷 🌿 🐒</div>
-        <h2>That's it. Just a tiny corner for you. 💚</h2>
-        <p>
-          No big explanation. No complicated reason.<br>
-          I just wanted to make something that feels a little bit like you.
-        </p>
-        <div class="heart">♡</div>
-      </section>
-    </main>
-
-    <footer>
-      made with a little chaos, a little code & lots of jungle energy 🐷🐒
-    </footer>
-  </div>
-
-  <script src="script.js"></script>
+ 
+<script>
+const card = document.getElementById("card");
+const problemEl = document.getElementById("problem");
+const form = document.getElementById("answerForm");
+const input = document.getElementById("answerInput");
+const msg = document.getElementById("msg");
+const attemptsEl = document.getElementById("attempts");
+ 
+let currentAnswer = 0;
+let wrongCount = 0;
+ 
+const templates = [
+  (a,b) => ({
+    text: `Piggie found ${a} shiny mangoes 🥭 under the big tree. Monkey swung by and dropped ${b} more into her basket. How many mangoes does Piggie have now?`,
+    answer: a + b
+  }),
+  (a,b) => ({
+    text: `Monkey was swinging on ${a} vines 🐒. Piggie accidentally bumped ${b} of them loose. How many vines is Monkey still swinging on?`,
+    answer: a - b
+  }),
+  (a,b) => ({
+    text: `Piggie is roaming the yard and finds ${a} little groups of acorns, with ${b} acorns in each group. How many acorns did Piggie collect in total?`,
+    answer: a * b
+  }),
+  (a,b) => ({
+    text: `Monkey tossed ${a} coconuts down to Piggie, but Piggie only managed to catch ${b} of them. How many coconuts rolled away into the jungle?`,
+    answer: a - b
+  }),
+  (a,b) => ({
+    text: `There are ${a} bananas 🍌 hanging from Monkey's tree. Piggie sneaks off with ${b} of them while Monkey isn't looking. How many bananas are left on the tree?`,
+    answer: a - b
+  }),
+  (a,b) => ({
+    text: `Piggie hid ${a} treats in the grass, and Monkey hid ${b} more nearby. How many treats are hidden in total?`,
+    answer: a + b
+  })
+];
+ 
+function randInt(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+ 
+function newProblem(){
+  const a = randInt(3, 20);
+  let b = randInt(1, 12);
+ 
+  const pick = templates[randInt(0, templates.length - 1)];
+  // Avoid negative results for subtraction-style problems
+  const test = pick(a, b);
+  let final = test;
+ 
+  if (final.answer < 0) {
+    final = pick(b, a); // swap so subtraction stays non-negative-ish
+  }
+ 
+  currentAnswer = final.answer;
+  problemEl.textContent = final.text;
+  input.value = "";
+  input.focus();
+}
+ 
+newProblem();
+ 
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const userAnswer = parseInt(input.value, 10);
+ 
+  if (userAnswer === currentAnswer) {
+    msg.textContent = "That's right! Opening the gate... 🌿🐷🐒";
+    msg.className = "msg success";
+    form.querySelector("button").disabled = true;
+    setTimeout(() => {
+      window.location.href = "home.html";
+    }, 900);
+  } else {
+    wrongCount++;
+    msg.textContent = "Not quite — here's a new one 🐒";
+    msg.className = "msg error";
+    attemptsEl.textContent = `attempts: ${wrongCount}`;
+ 
+    card.classList.remove("shake");
+    void card.offsetWidth; // restart animation
+    card.classList.add("shake");
+ 
+    newProblem();
+  }
+});
+</script>
+ 
 </body>
 </html>

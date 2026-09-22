@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A tiny jungle-themed gift made with love.">
+  <title>Piggie & Monkey 🐷🐒</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scene">
+
+    <div class="sun"></div>
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+
+    <header class="hero">
+      <p class="eyebrow">a tiny little jungle corner</p>
+      <h1>Welcome to the Chaos <span>Piggie</span> 🐷</h1>
+      <p class="subtitle">A small place on the internet, just for you.</p>
+    </header>
+
+    <!-- Monkey swinging from the tree -->
+    <div class="tree">
+      <div class="trunk"></div>
+      <div class="branch branch-main"></div>
+      <div class="branch branch-small"></div>
+      <div class="leaves leaves-one"></div>
+      <div class="leaves leaves-two"></div>
+      <div class="leaves leaves-three"></div>
+
+      <div class="rope">
+        <div class="monkey" aria-label="swinging monkey">🐒</div>
+      </div>
+    </div>
+
+    <!-- Roaming pig -->
+    <div class="piggie" id="piggie" aria-label="roaming pig">🐷</div>
+    <div class="pig-shadow" id="pigShadow"></div>
+
+    <main>
+      <!-- Video -->
+      <section class="card video-card">
+        <div class="section-label">🎬 your comedy corner</div>
+        <h2>One video I couldn't leave out 😂</h2>
+
+        <div class="video-frame">
+          <video id="giftVideo" controls playsinline poster="">
+            <source src="assets/video.mp4" type="video/mp4">
+            Your browser does not support the video element.
+          </video>
+          <div class="video-placeholder" id="videoPlaceholder">
+            <span>🎥</span>
+            <strong>Her comedy video goes here</strong>
+            <small>Replace <code>assets/video.mp4</code> with the video.</small>
+          </div>
+        </div>
+      </section>
+
+<!-- Photos -->
+<section class="photos-section">
+  <div class="section-label">📸 little memories</div>
+  <h2>Two pictures. Two little Piggies. One Name - Aruna😂</h2>
+
+  <div class="photo-grid">
+
+    <figure class="photo-card photo-one">
+      <img src="assets/photo1.jpeg" alt="Photo 1">
+      <figcaption>That smile. 🐷</figcaption>
+    </figure>
+
+    <figure class="photo-card photo-two">
+      <img src="assets/photo2.jpeg" alt="Photo 2">
+      <figcaption>Another little moment. 🌿</figcaption>
+    </figure>
+
+  </div>
+</section>
+
+      <!-- Ending -->
+      <section class="ending-card">
+        <div class="little-animals">🐒 🌿 🐷 🌿 🐒</div>
+        <h2>That's it. Just a tiny corner for you. 💚</h2>
+        <p>
+          No big explanation. No complicated reason.<br>
+          I just wanted to make something that feels a little bit like you.
+        </p>
+        <div class="heart">♡</div>
+      </section>
+    </main>
+
+    <footer>
+      made with a little chaos, a little code & lots of jungle energy 🐷🐒
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
